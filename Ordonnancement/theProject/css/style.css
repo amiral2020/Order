@@ -1,0 +1,19 @@
+.entry:not(:first-of-type)
+{
+    margin-top: 10px;
+}
+
+.glyphicon
+{
+    font-size: 12px;
+}
+
+header {
+	margin : 15px;
+	padding: 10px;
+}
+
+.radio {
+	margin : 15px;
+	padding: 10px;
+}
