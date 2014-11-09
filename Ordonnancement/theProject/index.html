@@ -47,28 +47,46 @@
 									<div class="">
 										
 										<div class="">
-											<table width="100%">
-												<thead>
-													<th>Name</th>
-													<th>Coming</th>
-													<th>Time</th>
-													<th>Add/Remove</th>
-												</thead>
-											</table>
+<!-- 											<table width="100%"> -->
+<!-- 												<thead> -->
+<!-- 													<th>Name</th> -->
+<!-- 													<th>Coming</th> -->
+<!-- 													<th>Time</th> -->
+<!-- 													<th>Add/Remove</th> -->
+<!-- 												</thead> -->
+<!-- 											</table> -->
+										<div class="col-sm-3 textField">
+											Name
+										</div>
+										<div class="col-sm-3 textField">
+											Coming
+										</div>
+										<div class="col-sm-3 textField">
+											Time
+										</div>
+										<div class="col-sm-3 textField">
+											Add/Remove
+										</div>
 																						
 										</div>
 										
 										
 										<div class="entry form-group">
-											<label class="col-sm-2 control-label">P0</label>
+											<label class="col-sm-3 control-label processuName" style="text-align: center;">P0</label>
 											<div class="col-sm-3">
 												
-											<input class="form-control" name="fields[]" type="number" min="0" max="20" value="0" />
+											<input class="form-control" name="comingFields[]" type="number" min="0" max="20" value="0" />
 											</div>
+											<div class="col-sm-3">
+												
+											<input class="form-control" name="timeFields[]" type="number" min="0" max="20" value="0" />
+											</div>
+											<div class="col-sm-3">
 											<span class="input-group-btn">
 												<button class="btn btn-success btn-add" type="button">
 													<span class="glyphicon glyphicon-plus"></span>
 												</button> </span>
+												</div>
 											
 										</div>
 										

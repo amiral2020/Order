@@ -17,3 +17,9 @@ header {
 	margin : 15px;
 	padding: 10px;
 }
+
+.textField{
+	text-align: center;
+	font-size: 16px;
+	font-style: inherit;
+}
