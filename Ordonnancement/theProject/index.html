@@ -23,6 +23,9 @@
 					<div class="control-group" id="fields">
 						<label class="control-label" for="field1">Nice Multiple Form Fields</label>
 						<div class="controls">
+						
+									 <button class="btn btn-primary" onclick="algorithmes();">Simulation</button>
+							
 							<form role="form" autocomplete="off">
 									<div class="radio">
 									  <label>
@@ -41,6 +44,7 @@
 									    <input type="radio" name="optionsRadios" value="PCTER">
 									    PCTER
 									  </label>
+									 
 									</div>
 								<div>
 									
@@ -104,7 +108,7 @@
 
 			</div>
 
-			<div class="col-md-8">
+			<div id="ganttChart" class="col-md-8">
 				second
 			</div>
 		</div>
@@ -117,9 +121,12 @@
 
 		<!-- Add field -->
 		<script src="js/addField.js"></script>
-
+		
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="js/bootstrap.js"></script>
+		
+		<!-- Algorithme Ordonnancement -->
+		<script src="js/ordonnancement.js"></script>
 	</body>
 
 </html>
