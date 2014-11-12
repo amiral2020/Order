@@ -17,23 +17,42 @@ function algorithmes(){
 		
 	
 	}
+	console.log("pcter");
+	pcter(donnee);
 	
-	sortDonnee(donnee);
+	console.log("fifo");
+	fifo(donnee);
+	
+	console.log("pcte");
+	pcte(donnee);
 }
 	
 	// impl. des algorithmes
 	
 	function fifo(donnee) {
 		
+		for(i = 0; i < donnee.length; i++){
+			for(j = i+1; j < donnee.length; j++){
+				if(donnee[i].coming > donnee[j].coming){
+					temp = donnee[i];
+					donnee[i] = donnee[j];
+					donnee[j] = temp;
+				}
+			}
+		}
+		
+		console.log("donne sorted");
+		for(i = 0; i <= theIProcessus ; i++ ) {
+
+			console.log("name : "+donnee[i].name+"\tcoming : "+donnee[i].coming+"\ttime : "+donnee[i].time);
+			
+		}
 		return donnee;
 	}
 	
-	function pcter() {
-		
-		return donnee.sort();
-	}
+	
 
-	function sortDonnee(donnee){
+	function pcter(donnee){
 		
 		for(i = 0; i < donnee.length; i++){
 			for(j = i+1; j < donnee.length; j++){
