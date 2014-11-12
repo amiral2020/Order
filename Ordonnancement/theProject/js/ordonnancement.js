@@ -33,7 +33,20 @@ function algorithmes(){
 		case "FIFO" : {
 			console.log("the fifo");
 			donnee = fifo(donnee);
-			gant = firstGanntt(donnee)
+			gant = firstGanntt(donnee);
+			break;
+		}
+		case "PCTE" : {
+			console.log("the PCTE");
+			donnee = pcte(donnee);
+			gant = firstGanntt(donnee);
+			break;
+		}
+		case "PCTER" : {
+			console.log("the PCTER");
+			donnee = pcter(donnee);
+			gant = firstGanntt(donnee);
+			break;
 		}
 	}
 	
