@@ -14,7 +14,12 @@ function algorithmes(){
 		};
 		
 		console.log("name : "+donnee[i].name+"\tcoming : "+donnee[i].coming+"\ttime : "+donnee[i].time);
+		
+	
 	}
+	
+	sortDonnee(donnee);
+}
 	
 	// impl. des algorithmes
 	
@@ -28,10 +33,48 @@ function algorithmes(){
 		return donnee.sort();
 	}
 
+	function sortDonnee(donnee){
 		
+		for(i = 0; i < donnee.length; i++){
+			for(j = i+1; j < donnee.length; j++){
+				if(donnee[i].time > donnee[j].time){
+					temp = donnee[i];
+					donnee[i] = donnee[j];
+					donnee[j] = temp;
+				}
+			}
+		}
+		
+		console.log("donne sorted");
+		for(i = 0; i <= theIProcessus ; i++ ) {
+
+			console.log("name : "+donnee[i].name+"\tcoming : "+donnee[i].coming+"\ttime : "+donnee[i].time);
+			
+		}
+		
+		return donnee;
+	}
+	
+	
 	function pcte(donnee) {
+	
+		for(i = 0; i < donnee.length; i++){
+			for(j = i+1; j < donnee.length; j++){
+				if(donnee[i].coming < donnee[j].coming){
+					temp = donnee[i];
+					donnee[i] = donnee[j];
+					donnee[j] = temp;
+				}
+			}
+		}
 		
-		return donnee.reverse();
+		console.log("donne sorted");
+		for(i = 0; i <= theIProcessus ; i++ ) {
+
+			console.log("name : "+donnee[i].name+"\tcoming : "+donnee[i].coming+"\ttime : "+donnee[i].time);
+			
+		}
+		return donnee;
 	}
 	
 	
@@ -50,13 +93,12 @@ function algorithmes(){
 			}else{
 				
 				tempDonnee[i] = donnee[i];
-				donnee.splice(donnee.indexOf(value), i); // make sur we delete it like this :3
+				donnee.splice(donnee.indexOf(value), i); // make sure we delete it like this :3
 			}
 		}
 		return tempDonnee;
 		}
 	
-}
 
 function tracerGanttChart() {
 	
