@@ -38,13 +38,28 @@ function algorithmes(){
 	}
 	
 	var theTable = document.getElementById("ganttTable");
+	theTable.innerHTML = "";
+	var boool = true;
+	var temmmp = gant[0];
 	for(i=0; i < gant.length ; i++){
 		console.log(gant[i]);
 		if(gant[i]=="") theTable.innerHTML += '<td><button class="btn btn-danger btn-add" type="button"></button></td>';
-		else theTable.innerHTML += '<td><button class="btn btn-success btn-add" type="button">'+gant[i]+'</button></td>';
+		else 
+			{
+				
+				if(temmmp != gant[i]){
+					if(boool) boool = false; 
+					else boool = true;
+				}
+				if(boool) theTable.innerHTML += '<td><button class="btn btn-success btn-add" type="button">'+gant[i]+'</button></td>';
+				else theTable.innerHTML += '<td><button class="btn btn-primary btn-add" type="button">'+gant[i]+'</button></td>';
+			}
+		
+		var temmmp = gant[i];
 	}
 	
 	var theTableThTime = document.getElementById("ganttTableTime");
+	theTableThTime.innerHTML = "";
 	for(i=0; i < gant.length ; i++){
 		theTableThTime.innerHTML +='<td>'+i+'</td>';
 	}
