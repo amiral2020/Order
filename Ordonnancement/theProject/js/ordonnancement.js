@@ -17,15 +17,66 @@ function algorithmes(){
 		
 	
 	}
-	console.log("pcter");
-	pcter(donnee);
 	
-	console.log("fifo");
-	fifo(donnee);
+	var optionsRadios = document.getElementsByName("optionsRadios");
+	var choix;
 	
-	console.log("pcte");
-	pcte(donnee);
+	for(i = 0; i < optionsRadios.length; i++){
+		if(optionsRadios[i].checked) choix = optionsRadios[i].value;
+	}
+	
+	console.log(choix);
+	
+	var gant = Array();
+	
+	switch(choix){
+		case "FIFO" : {
+			console.log("the fifo");
+			donnee = fifo(donnee);
+			gant = firstGanntt(donnee)
+		}
+	}
+	
+	var theTable = document.getElementById("ganttTable");
+	for(i=0; i < gant.length ; i++){
+		console.log(gant[i]);
+		if(gant[i]=="") theTable.innerHTML += '<td><button class="btn btn-danger btn-add" type="button"></button></td>';
+		else theTable.innerHTML += '<td><button class="btn btn-success btn-add" type="button">'+gant[i]+'</button></td>';
+	}
+	
+	var theTableThTime = document.getElementById("ganttTableTime");
+	for(i=0; i < gant.length ; i++){
+		theTableThTime.innerHTML +='<td>'+i+'</td>';
+	}
+	
+//	console.log("pcter");
+//	pcter(donnee);
+//	
+//	console.log("fifo");
+//	fifo(donnee);
+//	
+//	console.log("pcte");
+//	pcte(donnee);
 }
+
+
+	function firstGanntt(donnee){
+		var gant = Array();
+		var t = 0;
+		for(i = 0; i < donnee.length; i++)
+		{
+			while(t < donnee[i].coming){
+				gant[t] = "";
+				t++;
+			}
+			for(j = 0; j < donnee[i].time; j++){
+				gant[t] = donnee[i].name;
+				t++;
+			}
+		}
+		
+		return gant;
+	}
 	
 	// impl. des algorithmes
 	
