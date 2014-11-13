@@ -21,30 +21,30 @@
 
 				<div class="row">
 					<div class="control-group" id="fields">
-						<label class="control-label" for="field1">Nice Multiple Form Fields</label>
+<!-- 						<label class="control-label" for="field1">Nice Multiple Form Fields</label> -->
 						<div class="controls">
 						
 									 <button class="btn btn-primary" onclick="algorithmes();">Simulation</button>
 							
 							<form role="form" autocomplete="off">
-									<div class="radio">
+									<div class="radio" id="theDive">
 									  <label>
-									    <input type="radio" name="optionsRadios" value="FIFO" checked>
+									    <input type="radio" name="optionsRadios" value="FIFO" checked onclick="chowInnut();">
 									    FIFO
 									  </label>
 									  <label>
-									    <input type="radio" name="optionsRadios" value="PCTE">
+									    <input type="radio" name="optionsRadios" value="PCTE" onclick="chowInnut();">
 									    PCTE
 									  </label>
 									  <label>
-									    <input type="radio" name="optionsRadios" value="TOURNIQUET">
+									    <input type="radio" name="optionsRadios" value="TOURNIQUET" onclick="chowInnut();">
 									    TOURNIQUET
 									  </label>
 									  <label>
-									    <input type="radio" name="optionsRadios" value="PCTER">
+									    <input type="radio" name="optionsRadios" value="PCTER" onclick="chowInnut();">
 									    PCTER
 									  </label>
-									 
+									 <input style="display: none;" class="form-control" name="quantum" id="quantum" type="number" min="1" max="20" value="1" />
 									</div>
 								<div>
 									

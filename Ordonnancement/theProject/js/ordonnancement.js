@@ -10,7 +10,8 @@ function algorithmes(){
 		donnee[i] = {
 				name : "P"+i ,
 				coming : comingValue[i].value,
-				time : timeValue[i].value
+				time : timeValue[i].value,
+				termine : false
 		};
 		
 		console.log("name : "+donnee[i].name+"\tcoming : "+donnee[i].coming+"\ttime : "+donnee[i].time);
@@ -46,6 +47,12 @@ function algorithmes(){
 			console.log("the PCTER");
 			donnee = pcter(donnee);
 			gant = firstGanntt(donnee);
+			break;
+		}
+		case "TOURNIQUET" : {
+			console.log("the TOURNIQUET");
+			donnee = fifo(donnee);
+			gant = tourniquet(donnee);
 			break;
 		}
 	}
@@ -175,35 +182,77 @@ function algorithmes(){
 		return donnee;
 	}
 	
-	
-	function tourniquet(donnee) {
-		
-	//	var quantum = 1;
-		var tempDonnee = Array();
-		
-		for(i; i<donnee.length;i++){
-			
-			if(donnee[i].time>1){
-				
-				donnee[i].time-= 1;
-				tempDonnee[i] = donnee[i];
-			
-			}else{
-				
-				tempDonnee[i] = donnee[i];
-				donnee.splice(donnee.indexOf(value), i); // make sure we delete it like this :3
-			}
+	function countNumberProcessusTermine(donnee)
+	{
+		var temp = 0;
+		for(i = 0; i < donnee.length; i++){
+			if(donnee[i].termine) temp++;
 		}
-		return tempDonnee;
-		}
-	
-
-function tracerGanttChart() {
-	
-	var theDivChart = $("#ganttChart");
-	for(i = 0; i <= theIProcessus ;i++){
 		
+		return temp;
 	}
 	
+	function countExecutionTime(name, gant)
+	{
+		var times = 0;
+		for(i = 0; i < gant.length; i++){
+			if(gant[i] == name) times++;
+		}
+		
+		return times;
+	}
+	
+	
+	function tourniquet(donnees) {
+		var gant = Array();
+		var quantum = document.getElementById("quantum").value;
+		
+		console.log(quantum);
+		var processusTermine = 0;
+		var t = 0;
+		var q = 0;
+		while(processusTermine < donnees.length){
+			
+			for(c = 0 ; c < donnees.length; c++){
+				if(donnees[c].termine == false){
+					while(t < donnees[c].coming){
+						gant[t] = "";
+						t++;
+					}
+					q = 0;
+					var d = donnees[c];
+					while((q < quantum) && (countExecutionTime(donnees[c].name, gant) < d.time )){
+						gant[t] = donnees[c].name;
+						t++;
+						q++;
+					}
+					console.log(donnees[i]);
+					var theTime = donnees[c].time;
+					if(countExecutionTime(donnees[c].name, gant) >= theTime ){
+						donnees[c].termine = true;
+					}
+				}
+			}
+			
+			processusTermine = countNumberProcessusTermine(donnees);
+		}
+		
+		
+		return gant;
+	}
+	
+
+	
+
+function chowInnut(){
+	var optionsRadios = document.getElementsByName("optionsRadios");
+	var choix;
+	
+	for(i = 0; i < optionsRadios.length; i++){
+		if(optionsRadios[i].checked) choix = optionsRadios[i].value;
+	}
+	var quantum = document.getElementById("quantum");
+	if(choix == "TOURNIQUET") quantum.style.display = "block";
+	else quantum.style.display = "none";
 }
 
