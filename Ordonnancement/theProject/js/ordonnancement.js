@@ -211,13 +211,19 @@ function algorithmes(){
 		var processusTermine = 0;
 		var t = 0;
 		var q = 0;
+		var x = 0;
 		while(processusTermine < donnees.length){
-			
+			x = 0;
 			for(c = 0 ; c < donnees.length; c++){
 				if(donnees[c].termine == false){
+					x++;
 					while(t < donnees[c].coming){
-						gant[t] = "";
-						t++;
+						if(x==1) {
+							gant[t] = "";
+							t++;
+						}else {
+							c--;
+						}
 					}
 					q = 0;
 					var d = donnees[c];
