@@ -29,3 +29,8 @@ table {
 	font-size: 16px;
 	text-align: center;
 }
+
+#container{
+    width:100%;
+    margin: 10px;
+}
