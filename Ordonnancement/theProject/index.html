@@ -233,6 +233,231 @@
         </div>
     </div>
 
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="heading3">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse3"
+                   aria-expanded="false" aria-controls="collapse3">
+                    Algorithmes d'ordonancement Apériodique contraintes relatives
+                </a>
+            </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body" style="margin: 0; padding: 0">
+                <div class="control-group" id="fields3">
+                    <!-- 						<label class="control-label" for="field1">Nice Multiple Form Fields</label> -->
+                    <div class="controls2">
+
+                        <button class="btn btn-primary" onclick="algorithmesAPeriodique();">Simulation</button>
+
+                        <form role="form" autocomplete="off">
+                            <div class="radio" id="theDive3">
+                                <label>
+                                    <input type="radio" name="optionsRadios_algoAP" value="AP" checked
+                                           onclick="chowInnut();">
+                                    Arriére-plan
+                                </label>
+                                <label>
+                                    <input type="radio" name="optionsRadios_algoAP" value="SSCU" onclick="chowInnut();">
+                                    Serv. scrutation
+                                </label>
+                                <label>
+                                    <input type="radio" name="optionsRadios_algoAP" value="SDIF" onclick="chowInnut();">
+                                    Serv. différé
+                                </label>
+                                <label>
+                                    <input type="radio" name="optionsRadios_algoAP" value="SSPO" onclick="chowInnut();">
+                                    Serv. sporadique
+                                </label>
+                            </div>
+                            <div>
+
+                                <div class="">
+
+                                    <div class="row">
+
+                                        <div class="col-sm-2 textField">
+                                            Name
+                                        </div>
+                                        <div class="col-sm-2 textField">
+                                            Capacité
+                                        </div>
+                                        <div class="col-sm-2 textField">
+                                            Période
+                                        </div>
+                                        <div class="col-sm-2 textField">
+                                            Echéance
+                                        </div>
+                                        <div class="col-sm-2 textField">
+                                            Apériodique?
+                                        </div>
+                                        <div class="col-sm-2 textField">
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row entry form-group">
+                                        <label class="col-sm-2 control-label processuName"
+                                               style="text-align: center;">P0</label>
+
+                                        <div class="col-sm-2">
+
+                                            <input class="form-control" name="capaciteFields_[]" type="number" min="0"
+                                                   max="20"
+                                                   value="0"/>
+                                        </div>
+                                        <div class="col-sm-2">
+
+                                            <input class="form-control" name="periodeFields_[]" type="number" min="0"
+                                                   max="20"
+                                                   value="0"/>
+                                        </div>
+
+                                        <div class="col-sm-2">
+
+                                            <input class="form-control" name="echeanceFields_[]" type="number" min="0"
+                                                   max="20"
+                                                   value="0"/>
+                                        </div>
+
+                                        <div class="col-sm-2">
+
+                                            <input class="form-control" name="aperiodiqueFields_[]" type="checkbox" />
+                                        </div>
+
+                                        <div class="col-sm-2">
+											<span class="input-group-btn">
+												<button data-parent="controls2" class="btn btn-success btn-add" type="button">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button> </span>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </form>
+                        <br>
+                        <small>cliquer sur <span class="glyphicon glyphicon-plus gs"></span> pour ajouter un nouveau
+                            processus
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="heading4">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse4"
+                   aria-expanded="false" aria-controls="collapse4">
+                    Algorithmes d'ordonancement Apériodique contraintes strictes
+                </a>
+            </h4>
+        </div>
+        <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body" style="margin: 0; padding: 0">
+                <div class="control-group" id="fields4">
+                    <!-- 						<label class="control-label" for="field1">Nice Multiple Form Fields</label> -->
+                    <div class="controls2">
+
+                        <button class="btn btn-primary" onclick="algorithmesAPeriodique();">Simulation</button>
+
+                        <form role="form" autocomplete="off">
+                            <div class="radio" id="theDive4">
+                                <label>
+                                    <input type="radio" name="optionsRadios_algoAP_S" value="TempsCreux" checked
+                                           onclick="chowInnut();">
+                                    Temps creux
+                                </label>
+                                <label>
+                                    <input type="radio" name="optionsRadios_algoAP_S" value="SSCU" onclick="chowInnut();">
+                                    Ordennancement conjoint
+                                </label>
+                            </div>
+                            <div>
+
+                                <div class="">
+
+                                    <div class="row">
+
+                                        <div class="col-sm-2 textField">
+                                            Name
+                                        </div>
+                                        <div class="col-sm-2 textField">
+                                            Capacité
+                                        </div>
+                                        <div class="col-sm-2 textField">
+                                            Période
+                                        </div>
+                                        <div class="col-sm-2 textField">
+                                            Echéance
+                                        </div>
+                                        <div class="col-sm-2 textField">
+                                            Apériodique?
+                                        </div>
+                                        <div class="col-sm-2 textField">
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row entry form-group">
+                                        <label class="col-sm-2 control-label processuName"
+                                               style="text-align: center;">P0</label>
+
+                                        <div class="col-sm-2">
+
+                                            <input class="form-control" name="capaciteFields_S[]" type="number" min="0"
+                                                   max="20"
+                                                   value="0"/>
+                                        </div>
+                                        <div class="col-sm-2">
+
+                                            <input class="form-control" name="periodeFields_S[]" type="number" min="0"
+                                                   max="20"
+                                                   value="0"/>
+                                        </div>
+
+                                        <div class="col-sm-2">
+
+                                            <input class="form-control" name="echeanceFields_S[]" type="number" min="0"
+                                                   max="20"
+                                                   value="0"/>
+                                        </div>
+
+                                        <div class="col-sm-2">
+
+                                            <input class="form-control" name="aperiodiqueFields_S[]" type="checkbox" />
+                                        </div>
+
+                                        <div class="col-sm-2">
+											<span class="input-group-btn">
+												<button data-parent="controls2" class="btn btn-success btn-add" type="button">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button> </span>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </form>
+                        <br>
+                        <small>cliquer sur <span class="glyphicon glyphicon-plus gs"></span> pour ajouter un nouveau
+                            processus
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -269,6 +494,8 @@
 <script src="js/ordonnancement.js"></script>
 
 <script src="js/ordonnancement-periodique.js"></script>
+
+<script src="js/ordonnancement-aperiodique.js"></script>
 
 </body>
 

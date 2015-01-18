@@ -2,11 +2,12 @@
  * Created by AMIRAL on 14/01/2015.
  */
 
-function algorithmesPeriodique() {
+function algorithmesAPeriodique() {
 
-    var capacites = document.getElementsByName("capaciteFields[]");
-    var periodes = document.getElementsByName("periodeFields[]");
-    var deadlines = document.getElementsByName("echeanceFields[]");
+    var capacites = document.getElementsByName("capaciteFields_[]");
+    var periodes = document.getElementsByName("periodeFields_[]");
+    var deadlines = document.getElementsByName("echeanceFields_[]");
+    var aperiodiques = document.getElementsByName("aperiodiqueFields_[]");
 
     var donnee = Array();
 
@@ -19,13 +20,28 @@ function algorithmesPeriodique() {
             periode : periodes[i].value,
             deadline : deadlines[i].value,
             reste : capacites[i].value,
-            nouveauDeadline : deadlines[i].value
+            nouveauDeadline : deadlines[i].value,
+            aperiodique : aperiodiques[i].checked
         };
 
         console.log("name : "+donnee[i].name+"\tcapacite : "+donnee[i].capacite+"\tperiode : "+donnee[i].periode+"\t : "+donnee[i].deadline);
     }
 
-    var optionsRadios = document.getElementsByName("optionsRadios_algoP");
+
+    var donneePeriodique = Array();
+    var donneeAperiodique = Array();
+
+    for(i=0 ; i < nbrProc; i++){
+        if(!donnee[i].aperiodique){
+            donneePeriodique[donneePeriodique.length] = donnee[i];
+        }else{
+            donneeAperiodique[donneeAperiodique.length] = donnee[i];
+        }
+    }
+
+
+
+    var optionsRadios = document.getElementsByName("optionsRadios_algoAP");
     var choix;
 
     for(i = 0; i < optionsRadios.length; i++){
@@ -33,26 +49,28 @@ function algorithmesPeriodique() {
     }
 
     switch(choix){
-        case "RMA" : {
-            console.log("the RMA");
-            donnee = rma(donnee);
-            gant = gantRma(donnee);
+        case "AP" : {
+            console.log("the AP");
+            donneePeriodique = rmaAperiodique(donneePeriodique);
+            donneeAperiodique = fifoAperiodique(donneeAperiodique);
+            gant = gantRmaAperiodique(donneePeriodique,donneeAperiodique);
+
             break;
         }
-        case "DMA" : {
-            console.log("the DMA");
+        case "SSCU" : {
+            console.log("the SSCU");
             donnee = dma(donnee);
             gant = gantDma(donnee);
             break;
         }
-        case "EDF" : {
-            console.log("the PCTER");
+        case "SDIF" : {
+            console.log("the SDIF");
             donnee = edf(donnee);
             gant = gantEdf(donnee);
             break;
         }
-        case "LLF" : {
-            console.log("the TOURNIQUET");
+        case "SSPO" : {
+            console.log("the SSPO");
             donnee = llf(donnee);
             gant = gantLlf(donnee);
             break;
@@ -64,7 +82,7 @@ function algorithmesPeriodique() {
 
 }
 
-function rma(donnees){
+function rmaAperiodique(donnees){
     console.log(donnees.length);
     var nbr = donnees.length;
     for(i = 0; i < nbr-1; i++){
@@ -97,6 +115,26 @@ function rma(donnees){
 
     }
     return donnees;
+}
+
+
+//sort fifo Aperiodique
+function fifoAperiodique(donnees){
+
+    var nbr = donnees.length;
+    for(i = 0; i < nbr-1; i++) {
+        for (j = i + 1; j < nbr; j++) {
+
+            if (parseInt(donnees[i].periode, 10) > parseInt(donnees[j].periode, 10)) {
+                temp = donnees[i];
+                donnees[i] = donnees[j];
+                donnees[j] = temp;
+            }
+        }
+    }
+
+    return donnees;
+
 }
 
 
@@ -161,23 +199,32 @@ function llf(donnees, t){
     return donnees;
 }
 
-function gantRma(donnee){
+function gantRmaAperiodique(donneePeriodique, donneeAperiodique){
     var myGant = Array();
     var bool ;
     for(i=0 ; i < 20; i++){
         bool = true;
-        for(o=0 ; o < donnee.length; o++){
+        for(o=0 ; o < donneePeriodique.length; o++){
 
-            if(activation(i,donnee[o].periode)) {
+            if(activation(i,donneePeriodique[o].periode)) {
                 console.log("true");
-                donnee[o].reste = donnee[o].capacite;
+                donneePeriodique[o].reste = donneePeriodique[o].capacite;
             }
-            if(bool && donnee[o].reste!=0){
-                myGant[i]=donnee[o].name;
-                donnee[o].reste -= 1;
+            if(bool && donneePeriodique[o].reste!=0){
+                myGant[i]=donneePeriodique[o].name;
+                donneePeriodique[o].reste -= 1;
                 bool = false;
             }else{
                 if(bool)myGant[i] = "";
+            }
+        }
+
+        if(bool){
+            for(var j=0; j < donneeAperiodique.length; j++){
+                if(donneeAperiodique[j].periode <= i && donneeAperiodique[j].reste!=0){
+                    myGant[i] = donneeAperiodique[j].name;
+                    donneeAperiodique[j].reste--;
+                }
             }
         }
     }
@@ -291,34 +338,4 @@ function activation(i, periode){
     return ((i%periode) == 0);
 }
 
-
-function showGant(gant){
-    var theTable = document.getElementById("ganttTable");
-    theTable.innerHTML = "";
-    var boool = true;
-    var temmmp = gant[0];
-    for(i=0; i < gant.length ; i++){
-        console.log(gant[i]);
-        if(gant[i]=="") theTable.innerHTML += '<td><button class="btn btn-danger btn-add" type="button"></button></td>';
-        else
-        {
-
-            if(temmmp != gant[i]){
-                if(boool) boool = false;
-                else boool = true;
-            }
-            if(boool) theTable.innerHTML += '<td><button class="btn btn-success btn-add" type="button">'+gant[i]+'</button></td>';
-            else theTable.innerHTML += '<td><button class="btn btn-primary btn-add" type="button">'+gant[i]+'</button></td>';
-        }
-
-        var temmmp = gant[i];
-    }
-
-    var theTableThTime = document.getElementById("ganttTableTime");
-    theTableThTime.innerHTML = "";
-    for(i=0; i < gant.length ; i++){
-        theTableThTime.innerHTML +='<td>'+i+'</td>';
-    }
-
-}
 
