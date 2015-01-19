@@ -77,7 +77,6 @@ function algorithmesAPeriodique() {
         }
     }
 
-
     showGant(gant);
 
 }
